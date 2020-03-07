@@ -1,0 +1,14 @@
+#!/bin/sh
+
+input=$(mktemp -u --suffix .fmenu.input)
+output=$(mktemp -u --suffix .fmenu.output)
+mkfifo $input
+mkfifo $output
+chmod 600 $input $output
+
+alacritty --class fmenu --title fmenu -e sh -c "cat $input | fzf --reverse | tee $output" & disown
+
+trap "kill $! 2>/dev/null; rm -f $input $output" EXIT
+
+cat > $input
+cat $output
