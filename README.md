@@ -10,6 +10,6 @@ $ make install
 
 ## Uninstallation
 
-```shel
+```shell
 $ make uninstall
 ```
