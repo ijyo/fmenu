@@ -1,2 +1,6 @@
 #!/bin/sh
-fmenu_path | fmenu "$@" | ${SHELL:-"/bin/sh"} &
+
+IFS=':'
+files=$(find -L $PATH -maxdepth 1 -type f -executable | sed 's:.*/::' | sort -u)
+
+echo ${files[@]} | fmenu "$@" | ${SHELL:-"/bin/sh"} &
