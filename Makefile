@@ -1,14 +1,14 @@
-SRCDIR  := bin
-DESTDIR := $(HOME)/.local/bin
-SRCS    := $(wildcard $(SRCDIR)/*)
-DESTS   := $(addprefix $(DESTDIR)/, $(notdir $(SRCS)))
+SRCDIR    := bin
+DESTDIR   := $(HOME)/.local/bin
+SRCFILES  := $(SRCDIR)/fmenu $(SRCDIR)/fmenu_run
+DESTFILES := $(DESTDIR)/fmenu $(DESTDIR)/fmenu_run
 
 install:
 	mkdir -p $(DESTDIR)
-	cp -f $(SRCS) $(DESTDIR)
-	chmod 755 $(DESTS)
+	cp -f $(SRCFILES) $(DESTDIR)
+	chmod 755 $(DESTFILES)
 
 uninstall:
-	rm -f $(DESTS)
+	rm -f $(DESTFILES)
 
 .PHONY: install uninstall
