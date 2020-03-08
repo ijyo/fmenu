@@ -1,6 +1,6 @@
 SRCDIR    := bin
 DESTDIR   := $(HOME)/.local/bin
-FILES     := fmenu fmenu_run fmenu-term
+FILES     := fmenu fmenu_run fmenu-term fmenu-read
 SRCFILES  := $(addprefix $(SRCDIR)/,$(FILES))
 DESTFILES := $(addprefix $(DESTDIR)/,$(FILES))
 

@@ -1,0 +1,28 @@
+#!/bin/sh
+
+prompt='>'
+silent=
+
+while getopts p:s OPT
+do
+  case $OPT in
+    p) prompt=$OPTARG
+      ;;
+    s) silent='-s'
+      ;;
+  esac
+done
+shift $((OPTIND - 1))
+
+output=$(mktemp -u --suffix .fmenu.output)
+mkfifo $output
+chmod 600 $output
+
+reader=$(printf 'read %s str; echo "$str"' "$silent -p '$prompt '")
+
+export FMENU_TERM_OPTIONS='--class fmenu --title fmenu'
+fmenu-term "$reader | tee $output" & disown
+
+trap "kill $! 2>/dev/null; rm -f $output" EXIT
+
+cat $output
