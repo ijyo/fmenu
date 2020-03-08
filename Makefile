@@ -1,7 +1,8 @@
 SRCDIR    := bin
 DESTDIR   := $(HOME)/.local/bin
-SRCFILES  := $(SRCDIR)/fmenu $(SRCDIR)/fmenu_run
-DESTFILES := $(DESTDIR)/fmenu $(DESTDIR)/fmenu_run
+FILES     := fmenu fmenu_run fmenu-term
+SRCFILES  := $(addprefix $(SRCDIR)/,$(FILES))
+DESTFILES := $(addprefix $(DESTDIR)/,$(FILES))
 
 install:
 	mkdir -p $(DESTDIR)
