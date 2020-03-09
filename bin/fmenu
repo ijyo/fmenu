@@ -6,8 +6,8 @@ mkfifo $input
 mkfifo $output
 chmod 600 $input $output
 
-export FMENU_TERM_OPTIONS='--class fmenu --title fmenu'
-fmenu-term "cat $input | fzf --reverse | tee $output" & disown
+term=${FMENU_DEFAULT_TERM:-alacritty --class fmenu --title fmenu}
+$term -e sh -c "cat $input | fzf --reverse | tee $output" & disown
 
 trap "kill $! 2>/dev/null; rm -f $input $output" EXIT
 

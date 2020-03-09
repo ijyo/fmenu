@@ -1,6 +1,0 @@
-#!/bin/sh
-
-term=${FMENU_TERM:-alacritty}
-opts=${FMENU_TERM_OPTIONS:-}
-
-exec $term $opts -e sh -c "$@"

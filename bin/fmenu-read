@@ -18,10 +18,9 @@ output=$(mktemp -u --suffix .fmenu.output)
 mkfifo $output
 chmod 600 $output
 
+term=${FMENU_DEFAULT_TERM:-alacritty --class fmenu --title fmenu}
 reader=$(printf 'read %s str; echo "$str"' "$silent -p '$prompt '")
-
-export FMENU_TERM_OPTIONS='--class fmenu --title fmenu'
-fmenu-term "$reader | tee $output" & disown
+$term -e sh -c "$reader | tee $output" & disown
 
 trap "kill $! 2>/dev/null; rm -f $output" EXIT
 
