@@ -3,4 +3,10 @@
 IFS=':'
 files=$(find -L $PATH -maxdepth 1 -type f -executable | sed 's:.*/::' | sort -u)
 
-echo ${files[@]} | fmenu "$@" | ${SHELL:-"/bin/sh"} &
+run_term="echo \"${FMENU_TERM:-alacritty} -e sh -c {}\""
+command=$(echo ${files[@]} | \
+  fmenu \
+    "--bind='alt-enter:execute($run_term)+abort'" \
+    "$@")
+
+[ -n "$command" ] && eval "$command"
