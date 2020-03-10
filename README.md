@@ -1,12 +1,14 @@
 # fmenu
 
-fmenu is launcher with FZF.
+Launcher with [fzf](https://github.com/junegunn/fzf).
 
 ## Installation
 
 ```shell
 $ make install
 ```
+
+Default installed to `$(HOME)/.local/bin`.
 
 ## Uninstallation
 
