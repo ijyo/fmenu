@@ -5,13 +5,11 @@ Launcher with [fzf](https://github.com/junegunn/fzf).
 ## Installation
 
 ```shell
-$ make install
+$ sudo make install
 ```
-
-Default installed to `$(HOME)/.local/bin`.
 
 ## Uninstallation
 
 ```shell
-$ make uninstall
+$ sudo make uninstall
 ```

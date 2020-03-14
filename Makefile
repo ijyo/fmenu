@@ -1,4 +1,4 @@
-PREFIX := $(HOME)/.local
+PREFIX := /usr/local
 SRC    := $(addprefix bin/, fmenu fmenu_run readp)
 DEST   := $(addprefix $(DESTDIR)$(PREFIX)/bin/, $(notdir $(SRC)))
 
