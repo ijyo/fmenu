@@ -4,10 +4,7 @@ IFS=':'
 files=$(find -L $PATH -maxdepth 1 -type f -executable | sed 's:.*/::' | sort -u)
 
 run_term="echo \"${FMENU_TERM:-st} -e sh -c {}\""
-command=$(echo ${files[@]} | \
-  fmenu \
-    --tiebreak=begin \
-    "--bind='alt-enter:execute($run_term)+abort'" \
-    "$@")
+opts="--tiebreak=begin --bind='alt-enter:execute($run_term)+abort' $@"
+command=$(echo ${files[@]} | fmenu "$opts")
 
 [ -n "$command" ] && eval "$command"
