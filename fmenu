@@ -7,7 +7,7 @@ mkfifo $output
 chmod 600 $input $output
 
 term=${FMENU_TERM:-st}
-opts="-c fmenu -t fmenu $FMENU_TERM_DEFAULT_OPTS"
+opts="$FMENU_TERM_DEFAULT_OPTS -c fmenu -t fmenu"
 $term $opts -e sh -c "cat $input | \
   fzf --height=100% --no-info --reverse $@ | \
   tee $output" & disown
