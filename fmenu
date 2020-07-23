@@ -6,8 +6,8 @@ mkfifo $input
 mkfifo $output
 chmod 600 $input $output
 
-term=${FMENU_TERM:-st}
-opts="$FMENU_TERM_DEFAULT_OPTS -c fmenu -t fmenu"
+term=${FMENU_TERM:-alacritty}
+opts=$FMENU_TERM_DEFAULT_OPTS
 $term $opts -e sh -c "cat $input | \
   fzf --height=100% --no-info --reverse $@ | \
   tee $output" & disown
