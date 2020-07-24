@@ -18,7 +18,7 @@ output=$(mktemp -u --suffix .fmenu.output)
 mkfifo $output
 chmod 600 $output
 
-term=${FMENU_TERM:-st}
+term=${FMENU_TERM:-alacritty}
 opts=$FMENU_TERM_DEFAULT_OPTS
 reader=$(printf 'read %s str; echo "$str"' "$silent -p '$prompt '")
 $term $opts -e sh -c "$reader | tee $output" & disown
