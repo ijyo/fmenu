@@ -1,8 +1,5 @@
 #!/bin/sh
 
-p=$(pgrep -fo $0)
-[[ $$ != $p ]] && kill -TERM -$p
-
 IFS=':'
 files=$(find -L $PATH -maxdepth 1 -type f -executable | sed 's:.*/::' | sort -u)
 
