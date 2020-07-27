@@ -1,7 +1,7 @@
 #!/bin/sh
 
 p=$(pgrep -fo $0)
-[[ $$ != $p ]] && kill -TERM -$p
+[[ $$ != $p ]] && kill -KILL -$(ps -o pgid= $p | grep -o '[0-9]*')
 
 IFS=':'
 files=$(find -L $PATH -maxdepth 1 -type f -executable | sed 's:.*/::' | sort -u)
